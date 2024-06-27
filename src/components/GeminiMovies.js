@@ -6,7 +6,7 @@ const GeminiMovies = ({movie}) => {
 
     useEffect(()=>{
         geminiSuggestedMovies();
-    },[])
+    },[movie]);
 
     const geminiSuggestedMovies = async () => {
         const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`, API_OPTIONS);
@@ -14,7 +14,7 @@ const GeminiMovies = ({movie}) => {
         console.log(json.results[0]);
         setMovieData(json.results[0])
       }
-
+if (movieData && !movieData.poster_path) return null;
   return (
     <div className='text-blue-500'>
         <div>
