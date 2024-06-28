@@ -7,6 +7,8 @@ const MoviesSlice=createSlice({
         nowPlayingMoviesList:null,
         upcomingMoviesList:null,
         popularMoviesList:null,
+        movieOverviewState:false,
+        posterPathOverView:null,
         trailerList:null,
 
     },
@@ -23,10 +25,16 @@ const MoviesSlice=createSlice({
         addPopularMovies:(state,action)=>{
             state.popularMoviesList=action.payload;
         },
+        addMovieOverview:(state)=>{
+            state.movieOverviewState=(!state.movieOverviewState);
+        },
+        addPosterPathOverView:(state,action)=>{
+            state.posterPathOverView=action.payload;
+        },
         addTrailerVideo:(state,action)=>{
             state.trailerList=action.payload;
         }
     }
 })
-export const {addTopRatedMovies,addNowPlayingMovies,addUpcomingMovies,addPopularMovies,addTrailerVideo}=MoviesSlice.actions;
+export const {addTopRatedMovies,addNowPlayingMovies,addUpcomingMovies,addPopularMovies,addMovieOverview,addPosterPathOverView,addTrailerVideo}=MoviesSlice.actions;
 export default MoviesSlice.reducer;

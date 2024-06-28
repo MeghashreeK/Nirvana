@@ -20,7 +20,7 @@ const MoviesList = ({ title, movie }) => {
         <img className="cursor-pointer absolute left-0 z-10 w-10 h-10" src="https://img.icons8.com/ios/50/ffffff/less-than.png" onClick={scrollLeft} alt="less-than" />
         <div className='flex overflow-x-scroll scrollbar-none' ref={scrollContainerRef}>
           <div className='flex gap-3 cursor-pointer'>
-            {movie && movie.map((movie) => <MoviesCard key={movie.id} posterpath={movie.poster_path} />)}
+            {movie && movie.map((movie) => <MoviesCard key={movie.id} posterpath={movie.poster_path} overview={movie.overview} title={movie.original_title} />)}
           </div>
         </div>
         <img className="cursor-pointer absolute right-0 z-10 w-10 h-10" src="https://img.icons8.com/ios/50/ffffff/more-than.png" onClick={scrollRight} alt="more-than" />

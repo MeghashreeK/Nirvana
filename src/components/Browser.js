@@ -23,7 +23,8 @@ const Browser = () => {
       {(!gptSearchValue) && <div>
       <MainContainer/>
       <SecondaryContainer/>
-      </div>}
+      </div>
+      }
     </div>
 
   )
