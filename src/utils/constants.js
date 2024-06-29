@@ -7,6 +7,7 @@ export const SORT_DOWN_URL="https://img.icons8.com/material-sharp/24/ffffff/sort
 export const LESS_THAN_URL="https://img.icons8.com/ios/50/ffffff/less-than.png";
 export const MORE_THAN_URL="https://img.icons8.com/ios/50/ffffff/more-than.png";
 export const IMG_LINK="https://image.tmdb.org/t/p/w500/";
+export const PROFILE_PIC_URL="https://occ-0-1492-3662.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXz4LMjJFidX8MxhZ6qro8PBTjmHbxlaLAbk45W1DXbKsAIOwyHQPiMAuUnF1G24CLi7InJHK4Ge4jkXul1xIW49Dr5S7fc.png?r=e6e";
 
 
 export const API_OPTIONS = {
@@ -16,7 +17,13 @@ export const API_OPTIONS = {
       Authorization: " Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Nzk5MjBjZDFhZjRjMDBkZjkyY2U4N2FkOTRhMzk4YyIsInN1YiI6IjY2NzI3MjJhN2VmNzhiN2QwYjkwZDk3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.l01kkyLcVA9OtHBa4UadKxwIdsZfxbk4U-jWDm4XwMk",
     },
   };
-
+export const API_OPTIONS_FOR_YOUTUBE={
+  method: 'GET',
+  headers: {
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Nzk5MjBjZDFhZjRjMDBkZjkyY2U4N2FkOTRhMzk4YyIsIm5iZiI6MTcxOTY2NzM4My45MDM0MzgsInN1YiI6IjY2NzI3MjJhN2VmNzhiN2QwYjkwZDk3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NQaineTLUgwM80Q76c93g4GbaidHneN5Sb-wo0V03yM',
+    accept: 'application/json'
+  }
+}
 export const LANGUAGE_SUPPORT=[{name:"English",identifier:"en"},{name:"Hindi",identifier:"hi"},{name:"Spanish",identifier:"es"}]
 export const GEMINI_API_KEY=process.env.REACT_APP_GEMINI_API_KEY;
 export const RAPID_API_KEY=process.env.REACT_APP_RAPID_API_KEY;

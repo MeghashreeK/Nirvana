@@ -1,11 +1,17 @@
 import VideoTitle from './VideoTitle'
 import VideoBackground from './VideoBackground'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { toggleHeaderList } from '../utils/HeaderListSlice';
 
 const MainContainer = () => {
+  const dispatch=useDispatch();
+
+  const handleHeaderListEvent = () => {
+    dispatch(toggleHeaderList(false));
+  }
    
   return (
-    <div>
+    <div onClick={handleHeaderListEvent}>
         <VideoTitle />
         <VideoBackground/>
     </div>

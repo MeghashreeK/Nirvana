@@ -7,18 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/UserSlice';
 import { useEffect } from 'react';
 import { gptToggleFunction } from '../utils/GptSearchSlice';
-import { LANGUAGE_SUPPORT, SORT_DOWN_URL, SORT_UP_URL } from '../utils/constants';
+import { LANGUAGE_SUPPORT, PROFILE_PIC_URL, SORT_DOWN_URL, SORT_UP_URL } from '../utils/constants';
 import { addLanguage } from '../utils/LanguageSlice';
 import lang from '../utils/languageConstants'
+import { toggleHeaderList } from '../utils/HeaderListSlice';
 
 
 const Header = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [arrowState, setArrowState] = useState(false);
+    // const [arrowState, setArrowState] = useState(false);
     const gptSearchValue = useSelector(store => store.gptstate.gptToggle);
     const language = useSelector(store => store.language.languageSelected);
+    const arrowState=useSelector((store)=>store.headerList.headerListToggle);
 
 
     useEffect(() => {
@@ -41,8 +43,13 @@ const Header = () => {
             navigate("/error");
         });
     }
-    const handleArrowIconFunction = () => {
-        setArrowState(!arrowState);
+    
+    const handleListOpenFunction=()=>{
+        dispatch(toggleHeaderList(true));
+    }
+
+    const handleListCloseFunction=()=>{
+        dispatch(toggleHeaderList(false));
     }
 
     const handleLanguageSelection = (e) => {
@@ -57,12 +64,13 @@ const Header = () => {
                 {window.location.pathname === "/browse" && (
                     <div className='flex flex-col gap-1 items-center'>
                         <div className='flex items-center gap-1'>
-                            <img width="24" height="24" className='cursor-pointer' src={arrowState ? SORT_UP_URL : SORT_DOWN_URL} alt="arrow" onClick={handleArrowIconFunction} />
-                            <img className='w-8 h-8 cursor-pointer' onClick={handleSignOut} src="https://occ-0-1492-3662.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABXz4LMjJFidX8MxhZ6qro8PBTjmHbxlaLAbk45W1DXbKsAIOwyHQPiMAuUnF1G24CLi7InJHK4Ge4jkXul1xIW49Dr5S7fc.png?r=e6e" alt="profile-icon" />
+                           {arrowState && <img width="24" height="24" className='cursor-pointer' src={SORT_UP_URL} alt="up-arrow" onClick={handleListCloseFunction} />}
+                            {(!arrowState) && <img width="24" height="24" className='cursor-pointer' src={SORT_DOWN_URL} alt="down-arrow" onClick={handleListOpenFunction} />}
+                            <img className='w-8 h-8 cursor-pointer' src={PROFILE_PIC_URL} alt="profile-icon" />
                         </div>
-                        {(arrowState) && <div className='flex flex-col border-2 text-white p-2 bg-gray-400 rounded-sm place-items-start gap-1'>
+                        {(arrowState) && <div className='flex flex-col bg-opacity-50 border-2 text-white p-2 bg-gray-400 rounded-sm place-items-start gap-1'>
                             <p className='cursor-pointer' onClick={() => dispatch(gptToggleFunction())}>{gptSearchValue ? lang[language].home : lang[language].gptSearch}</p>
-                            <p className='cursor-pointer'>{lang[language].signOut}</p>
+                            <p className='cursor-pointer' onClick={handleSignOut}>{lang[language].signOut}</p>
                             {<select className='border cursor-pointer focus:outline-none bg-gray-400' onChange={handleLanguageSelection} value={language}>
                                 {LANGUAGE_SUPPORT.map((lang) => <option className='text-[10px] sm:text-[16px]' key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
                             </select>}

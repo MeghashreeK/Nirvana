@@ -9,9 +9,11 @@ import useTopRatedMovies from '../customHooks/useTopRatedMovies';
 import useTranslation from '../customHooks/useTranslation';
 import { useSelector } from 'react-redux';
 import GeminiSearch from './GeminiSearch';
+import VideosPlayer from './VideosPlayer';
 
 const Browser = () => {
   const gptSearchValue=useSelector(store=>store.gptstate.gptToggle);
+  const videoPlayerValue=useSelector((store)=>store.videoPlayer.playerState);
 
   useTopRatedMovies();
   useNowPlayingMovies();
@@ -22,11 +24,14 @@ const Browser = () => {
   return (
     <div>
       <Header/>
-      {(gptSearchValue) && <GeminiSearch/>}
-      {(!gptSearchValue) && <div>
+      {(gptSearchValue) && (!videoPlayerValue) && <GeminiSearch/>}
+      {(!gptSearchValue) && (!videoPlayerValue) && <div>
       <MainContainer/>
       <SecondaryContainer/>
       </div>
+      }
+      {
+        (!gptSearchValue) && videoPlayerValue && <VideosPlayer/>
       }
     </div>
 

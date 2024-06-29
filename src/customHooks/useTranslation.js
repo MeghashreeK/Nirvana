@@ -37,7 +37,7 @@ const useTranslation = () => {
         const json = await data.json();
         const translatedTextWithAmpersands = json.trans;
         const translatedText = translatedTextWithAmpersands.split("&r&z&$");
-        console.log(translatedText);
+        // console.log(translatedText);
         const translatedTitle = translatedText[0];
         const translatedOverview = translatedText[1];
         dispatch(addTranslatedSentence({ title: translatedTitle, overview: translatedOverview }));

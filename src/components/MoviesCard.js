@@ -3,12 +3,12 @@ import { IMG_LINK } from '../utils/constants'
 import { useDispatch } from 'react-redux'
 import { addMovieOverview, addPosterPathOverView } from '../utils/MoviesSlice';
 
-const MoviesCard = ({ posterpath, overview, title }) => {
+const MoviesCard = ({ posterpath, overview, title, id }) => {
 
   const dispatch = useDispatch();
   const handleMovieCardEvent = () => {
     dispatch(addMovieOverview());
-    dispatch(addPosterPathOverView({ posterPathData: posterpath, overviewData: overview, movieTitle:title }))
+    dispatch(addPosterPathOverView({ posterPathData: posterpath, overviewData: overview, movieTitle:title, movieId:id }))
   }
   return (
     <div className='w-36'>
