@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { API_OPTIONS, API_OPTIONS_FOR_YOUTUBE } from '../utils/constants';
+import { API_OPTIONS_FOR_YOUTUBE } from '../utils/constants';
 
 const VideosPlayed = () => {
   const id = useSelector((store) => store.addMovie.posterPathOverView);

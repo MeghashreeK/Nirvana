@@ -12,8 +12,10 @@ import GeminiSearch from './GeminiSearch';
 import VideosPlayer from './VideosPlayer';
 
 const Browser = () => {
-  const gptSearchValue=useSelector(store=>store.gptstate.gptToggle);
-  const videoPlayerValue=useSelector((store)=>store.videoPlayer.playerState);
+  const homeVisibility = useSelector((store) => store.headerMenu.homeValue);
+  const gptSearchPageVisibility = useSelector((store) => store.headerMenu.gptSearchValue);
+  const videoPlayerVisibility = useSelector((store) => store.headerMenu.videoPlayerValue);
+
 
   useTopRatedMovies();
   useNowPlayingMovies();
@@ -23,16 +25,16 @@ const Browser = () => {
 
   return (
     <div>
-      <Header/>
-      {(gptSearchValue) && (!videoPlayerValue) && <GeminiSearch/>}
-      {(!gptSearchValue) && (!videoPlayerValue) && <div>
-      <MainContainer/>
-      <SecondaryContainer/>
-      </div>
-      }
-      {
-        (!gptSearchValue) && videoPlayerValue && <VideosPlayer/>
-      }
+      <Header />
+
+      {(gptSearchPageVisibility) && <GeminiSearch />}
+
+      {(homeVisibility) && <div>
+        <MainContainer />
+        <SecondaryContainer />
+      </div>}
+
+      {(videoPlayerVisibility) && <VideosPlayer />}
     </div>
 
   )

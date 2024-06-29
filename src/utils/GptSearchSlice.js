@@ -3,13 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const GptSearchSlice = createSlice({
     name: "gptstate",
     initialState: {
-        gptToggle: false,
+        // gptToggle: false,
         translate: null,
     },
     reducers: {
-        gptToggleFunction: (state) => {
-            state.gptToggle = (!state.gptToggle);
-        },
+        // gptToggleFunction: (state) => {
+        //     state.gptToggle = (!state.gptToggle);
+        // },
         addTranslatedSentence: (state, action) => {
             state.translate = action.payload;
         }
@@ -17,5 +17,5 @@ const GptSearchSlice = createSlice({
 
 })
 
-export const { gptToggleFunction, addTranslatedSentence } = GptSearchSlice.actions;
+export const { addTranslatedSentence } = GptSearchSlice.actions;
 export default GptSearchSlice.reducer;

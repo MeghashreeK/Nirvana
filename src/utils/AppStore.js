@@ -5,6 +5,7 @@ import GptSearchSlice from "./GptSearchSlice";
 import LanguageSlice from "./LanguageSlice";
 import HeaderListSlice from "./HeaderListSlice";
 import VideoPlayerSlice from "./VideoPlayerSlice";
+import HeaderMenuSlice from "./HeaderMenuSlice";
 
 const AppStore=configureStore({
     reducer:{
@@ -13,7 +14,7 @@ const AppStore=configureStore({
         gptstate:GptSearchSlice,
         language:LanguageSlice,
         headerList:HeaderListSlice,
-        videoPlayer:VideoPlayerSlice,
+        headerMenu:HeaderMenuSlice
     }
 });
 export default AppStore;

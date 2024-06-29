@@ -11,6 +11,7 @@ import { LANGUAGE_SUPPORT, PROFILE_PIC_URL, SORT_DOWN_URL, SORT_UP_URL } from '.
 import { addLanguage } from '../utils/LanguageSlice';
 import lang from '../utils/languageConstants'
 import { toggleHeaderList } from '../utils/HeaderListSlice';
+import { toggleHomeValue, togglegptSearchValue, togglevideoPlayerValue } from '../utils/HeaderMenuSlice';
 
 
 const Header = () => {
@@ -55,7 +56,18 @@ const Header = () => {
     const handleLanguageSelection = (e) => {
         dispatch(addLanguage(e.target.value));
     }
+    const handleHomeEvent=()=>{
+        dispatch(toggleHomeValue(true));
+        dispatch(togglegptSearchValue(false));
+        dispatch(togglevideoPlayerValue(false));
 
+    }
+    const handleGptSearchEvent=()=>{
+        dispatch(togglegptSearchValue(true));
+        dispatch(toggleHomeValue(false));
+        dispatch(togglevideoPlayerValue(false));
+    }
+    
 
     return (
         <div className='absolute z-10'>
@@ -69,7 +81,9 @@ const Header = () => {
                             <img className='w-8 h-8 cursor-pointer' src={PROFILE_PIC_URL} alt="profile-icon" />
                         </div>
                         {(arrowState) && <div className='flex flex-col bg-opacity-50 border-2 text-white p-2 bg-gray-400 rounded-sm place-items-start gap-1'>
-                            <p className='cursor-pointer' onClick={() => dispatch(gptToggleFunction())}>{gptSearchValue ? lang[language].home : lang[language].gptSearch}</p>
+                            {/* <p className='cursor-pointer' onClick={() => dispatch(gptToggleFunction())}>{gptSearchValue ? lang[language].home : lang[language].gptSearch}</p> */}
+                            <p className='cursor-pointer' onClick={handleHomeEvent}>{lang[language].home}</p>
+                            <p className='cursor-pointer' onClick={handleGptSearchEvent}>{lang[language].gptSearch}</p>
                             <p className='cursor-pointer' onClick={handleSignOut}>{lang[language].signOut}</p>
                             {<select className='border cursor-pointer focus:outline-none bg-gray-400' onChange={handleLanguageSelection} value={language}>
                                 {LANGUAGE_SUPPORT.map((lang) => <option className='text-[10px] sm:text-[16px]' key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}

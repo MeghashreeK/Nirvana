@@ -5,7 +5,7 @@ import { CROSS_BUTTON_URL, IMG_LINK, PLAY_BUTTON_URL } from '../utils/constants'
 import { addMovieOverview } from '../utils/MoviesSlice';
 import lang from '../utils/languageConstants'
 import { toggleHeaderList } from '../utils/HeaderListSlice';
-import { startPlayer } from '../utils/VideoPlayerSlice';
+import { toggleHomeValue, togglegptSearchValue, togglevideoPlayerValue } from '../utils/HeaderMenuSlice';
 
 
 
@@ -24,7 +24,7 @@ const SecondaryContainer = () => {
     if (movieOverviewState && movieDataRef.current) {
       movieDataRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, [movieOverviewState,movieData]);
+  }, [movieOverviewState,movieData,movieInfo]);
 
   const handleClick = () => {
     setShowMovieOverview(!showMovieOverview);
@@ -39,7 +39,9 @@ const SecondaryContainer = () => {
   }
 
   const handleVideoPlayerEvent=()=>{
-    dispatch(startPlayer(true));
+   dispatch(togglevideoPlayerValue(true));
+   dispatch(toggleHomeValue(false));
+   dispatch(togglegptSearchValue(false));
   }
 
 
