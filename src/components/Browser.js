@@ -6,15 +6,18 @@ import SecondaryContainer from './SecondaryContainer';
 import usePopularMovies from '../customHooks/usePopularMovies';
 import useUpcomingMovies from '../customHooks/useUpcomingMovies';
 import useTopRatedMovies from '../customHooks/useTopRatedMovies';
+import useTranslation from '../customHooks/useTranslation';
 import { useSelector } from 'react-redux';
 import GeminiSearch from './GeminiSearch';
 
 const Browser = () => {
   const gptSearchValue=useSelector(store=>store.gptstate.gptToggle);
+
   useTopRatedMovies();
   useNowPlayingMovies();
   useUpcomingMovies();
   usePopularMovies();
+  useTranslation();
 
   return (
     <div>
@@ -31,3 +34,4 @@ const Browser = () => {
 }
 
 export default Browser;
+

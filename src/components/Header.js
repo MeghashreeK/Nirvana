@@ -16,7 +16,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const [arrowState, setArrowState] = useState(false);
     const gptSearchValue = useSelector(store => store.gptstate.gptToggle);
-    const language=useSelector(store=>store.language.languageSelected);
+    const language = useSelector(store => store.language.languageSelected);
 
 
     useEffect(() => {
@@ -43,8 +43,8 @@ const Header = () => {
         setArrowState(!arrowState);
     }
 
-    const handleLanguageSelection=(e)=>{
-       dispatch(addLanguage(e.target.value));
+    const handleLanguageSelection = (e) => {
+        dispatch(addLanguage(e.target.value));
     }
 
 
@@ -61,7 +61,7 @@ const Header = () => {
                         {(arrowState) && <div className='flex flex-col border-2 text-white p-2 bg-gray-400 rounded-sm place-items-start gap-1'>
                             <p className='cursor-pointer' onClick={() => dispatch(gptToggleFunction())}>{gptSearchValue ? "Home" : "Gpt Search"}</p>
                             <p className='cursor-pointer'>Sign Out</p>
-                            {(gptSearchValue) && <select className='border cursor-pointer focus:outline-none bg-gray-400' onChange={handleLanguageSelection} value={language}>
+                            {<select className='border cursor-pointer focus:outline-none bg-gray-400' onChange={handleLanguageSelection} value={language}>
                                 {LANGUAGE_SUPPORT.map((lang) => <option className='text-[10px] sm:text-[16px]' key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
                             </select>}
                         </div>}

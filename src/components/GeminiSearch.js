@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react'
 import lang from '../utils/languageConstants'
 import { useSelector } from 'react-redux'
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { API_OPTIONS, GEMINI_KEY } from '../utils/constants';
+import { GEMINI_API_KEY } from '../utils/constants';
 import GeminiMovies from './GeminiMovies';
 
 const GeminiSearch = () => {
-  const genAI = new GoogleGenerativeAI(GEMINI_KEY);
+  const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
   const language = useSelector(store => store.language.languageSelected);
   const input = useRef(null);
   const [movies,setMovies]=useState([]);
@@ -19,13 +19,10 @@ const GeminiSearch = () => {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const data = await model.generateContent(searchQuery);
     const response = await data.response;
-    // console.log(response);
     const text = response.text();
-    // console.log(text);
     const result = text.split(",").map(item => item.trim());
     const finalResult = result;
-    // console.log(finalResult);
-    // finalResult.map((movies) => geminiSuggestedMovies(movies));
+ 
     setMovies(finalResult);
     setInputValue(''); 
     }

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const LanguageSlice=createSlice({
     name:"language",
     initialState:{
-        languageSelected:"EN",
+        languageSelected:"en",
     },
     reducers:{
         addLanguage:(state,action)=>{
