@@ -6,6 +6,8 @@ import { GEMINI_API_KEY } from '../utils/constants';
 import GeminiMovies from './GeminiMovies';
 import { toggleHeaderList } from '../utils/HeaderListSlice';
 import { useDispatch } from 'react-redux';
+import ErrorElement from './ErrorElement';
+import { and } from 'firebase/firestore';
 
 const GeminiSearch = () => {
   const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
@@ -13,12 +15,11 @@ const GeminiSearch = () => {
   const input = useRef(null);
   const [movies,setMovies]=useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [error,setError]=useState(false);
   const dispatch=useDispatch();
 
-
-
-
   const geminiSearchMovies = async () => {
+    try{
     const searchQuery = "Act as movie recommendation system and suggest movies for the query: " + input.current.value + ". only give me names of 15 movies, comma separated like the given result ahead. Example Result: Avatar, Sholay, Bahubali, Singham, Once upon a time in mumbai";
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const data = await model.generateContent(searchQuery);
@@ -28,6 +29,11 @@ const GeminiSearch = () => {
     const finalResult = result; 
     setMovies(finalResult);
     setInputValue(''); 
+    setError(false);
+    }
+    catch(error){
+    setError(true);
+    }
     }
  
     const handleHeaderListEvent = () => {
@@ -43,13 +49,12 @@ const GeminiSearch = () => {
           {lang[language].search}</button>
       </div>
       <div className='flex flex-wrap gap-5 p-2 bg-[#010B13] justify-center'>
-        {movies && movies.map((movie,index)=> <GeminiMovies key={index} movie={movie} />)}
+        {(error) ? <ErrorElement/> : (movies && movies.map((movie,index)=> <GeminiMovies key={index} movie={movie} />))}
       </div>
     </div>
   )
 }
 
 export default GeminiSearch;
-
 
 
