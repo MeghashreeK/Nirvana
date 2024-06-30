@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { API_OPTIONS_FOR_YOUTUBE } from '../utils/constants';
+import { toggleHeaderList } from '../utils/HeaderListSlice';
 
 const VideosPlayed = () => {
   const id = useSelector((store) => store.addMovie.posterPathOverView);
   const [movieKey, setMovieKey] = useState([]);
+  const dispatch=useDispatch();
+
 
   useEffect(() => {
     if (id) {
@@ -13,6 +16,10 @@ const VideosPlayed = () => {
       console.log(id.movieId);
     }
   }, [id])
+
+  const handleHeaderListEvent = () => {
+    dispatch(toggleHeaderList(false));
+  }
 
   const getVideoData = async () => {
     const data = await fetch(`https://api.themoviedb.org/3/movie/${id.movieId}/videos`, API_OPTIONS_FOR_YOUTUBE);
@@ -31,7 +38,7 @@ const VideosPlayed = () => {
   }
 console.log(movieKey);
   return (
-    <div className='w-full h-screen'>
+    <div className='w-full h-screen' onClick={handleHeaderListEvent}>
       {movieKey && <iframe className='w-full h-screen' src={`https://www.youtube.com/embed/${movieKey}?autoplay=1&mute=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
     </div>
   )

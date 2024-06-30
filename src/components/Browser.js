@@ -11,11 +11,11 @@ import { useSelector } from 'react-redux';
 import GeminiSearch from './GeminiSearch';
 import VideosPlayer from './VideosPlayer';
 
+
 const Browser = () => {
   const homeVisibility = useSelector((store) => store.headerMenu.homeValue);
   const gptSearchPageVisibility = useSelector((store) => store.headerMenu.gptSearchValue);
   const videoPlayerVisibility = useSelector((store) => store.headerMenu.videoPlayerValue);
-
 
   useTopRatedMovies();
   useNowPlayingMovies();
@@ -31,7 +31,7 @@ const Browser = () => {
 
       {(homeVisibility) && <div>
         <MainContainer />
-        <SecondaryContainer />
+        <SecondaryContainer/>
       </div>}
 
       {(videoPlayerVisibility) && <VideosPlayer />}

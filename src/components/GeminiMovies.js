@@ -14,7 +14,7 @@ const GeminiMovies = ({movie}) => {
         console.log(json.results[0]);
         setMovieData(json.results[0])
       }
-if (movieData && !movieData.poster_path) return null;
+if ((movieData) && !movieData.poster_path) return null;
   return (
     <div className='text-blue-500'>
         <div>

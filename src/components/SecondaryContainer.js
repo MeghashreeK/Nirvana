@@ -6,6 +6,7 @@ import { addMovieOverview } from '../utils/MoviesSlice';
 import lang from '../utils/languageConstants'
 import { toggleHeaderList } from '../utils/HeaderListSlice';
 import { toggleHomeValue, togglegptSearchValue, togglevideoPlayerValue } from '../utils/HeaderMenuSlice';
+import ShimmerUI from './ShimmerUI';
 
 
 
@@ -24,7 +25,8 @@ const SecondaryContainer = () => {
     if (movieOverviewState && movieDataRef.current) {
       movieDataRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, [movieOverviewState,movieData,movieInfo]);
+  }, [ movieData]);
+
 
   const handleClick = () => {
     setShowMovieOverview(!showMovieOverview);
@@ -38,15 +40,15 @@ const SecondaryContainer = () => {
     dispatch(toggleHeaderList(false));
   }
 
-  const handleVideoPlayerEvent=()=>{
-   dispatch(togglevideoPlayerValue(true));
-   dispatch(toggleHomeValue(false));
-   dispatch(togglegptSearchValue(false));
+  const handleVideoPlayerEvent = () => {
+    dispatch(togglevideoPlayerValue(true));
+    dispatch(toggleHomeValue(false));
+    dispatch(togglegptSearchValue(false));
   }
 
 
-  return (
-    movie && (<div className='flex flex-col bg-black pb-5 relative w-screen' onClick={() => {
+  return  (
+    <div className='flex flex-col bg-black pb-5 relative w-screen' onClick={() => {
       handleClick();
       handleHeaderListEvent();
     }}>
@@ -66,12 +68,13 @@ const SecondaryContainer = () => {
           </p>
           <p className='hidden lg:block text-white text-[14px]'>{movieInfo.overview}</p>
           <button className='flex bg-white text-black justify-center items-center font-bold text-center py-1 px-2 sm:px-6 lg:py-2 gap-1 rounded-sm transition duration-300 hover:bg-opacity-60 lg:w-1/4'
-          onClick={()=>handleVideoPlayerEvent()}>
-            <img width="30" height="30" src={PLAY_BUTTON_URL} alt="play--v1"/>{lang[language].playButton}</button>
+            onClick={() => handleVideoPlayerEvent()}>
+            <img width="30" height="30" src={PLAY_BUTTON_URL} alt="play--v1" />{lang[language].playButton}</button>
         </div>
       </div>}
-    </div>)
+    </div>
   )
+
 }
 
 export default SecondaryContainer
