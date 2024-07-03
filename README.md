@@ -1,4 +1,4 @@
-Nirvana - Cinematic Escape!
+Nirvana - The Cinematic Escape!
 
 I've created this web app using ReactJS, Tailwind CSS, and Redux. The frontend is deployed with Vercel and the backend is powered by Firebase. Here are its key features:
 
