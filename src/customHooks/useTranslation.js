@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addTranslatedSentence } from "../utils/GptSearchSlice";
 import { RAPID_API_KEY, TRANSLATION_API } from "../utils/constants";
+import { limitExceededFunction } from "../utils/LanguageSlice";
 
 const useTranslation = () => {
     const movieData = useSelector((store) => store.addMovie.posterPathOverView);
@@ -33,14 +34,19 @@ const useTranslation = () => {
                 text: textToTranslate
             })
         };
+        try{
         const data = await fetch(TRANSLATION_API, options);
         const json = await data.json();
         const translatedTextWithAmpersands = json.trans;
         const translatedText = translatedTextWithAmpersands.split("&r&z&$");
-        // console.log(translatedText);
         const translatedTitle = translatedText[0];
         const translatedOverview = translatedText[1];
         dispatch(addTranslatedSentence({ title: translatedTitle, overview: translatedOverview }));
+        }
+        catch{
+            dispatch(addTranslatedSentence({ title: title, overview: overview }))
+            dispatch(limitExceededFunction(true));
+        }
 
 
     }
@@ -49,7 +55,6 @@ const useTranslation = () => {
 
 }
 export default useTranslation;
-
 
 
 

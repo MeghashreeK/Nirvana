@@ -16,6 +16,7 @@ const SecondaryContainer = () => {
   const movieOverviewState = useSelector((store) => store.addMovie.movieOverviewState);
   const movieData = useSelector((store) => store.addMovie.posterPathOverView);
   const movieInfo = useSelector((store) => store.gptstate?.translate);
+  const limitExceeded=useSelector((store)=>store.language.apiLimitExceeded);
   const [showMovieOverview, setShowMovieOverview] = useState(false);
   const movieDataRef = useRef(null);
   const language = useSelector(store => store.language.languageSelected);
@@ -25,7 +26,7 @@ const SecondaryContainer = () => {
     if (movieOverviewState && movieDataRef.current) {
       movieDataRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, [ movieData]);
+  }, [ movieInfo]);
 
 
   const handleClick = () => {
@@ -67,6 +68,7 @@ const SecondaryContainer = () => {
             {movieInfo.overview.length > 300 ? movieInfo.overview.substring(0, 300) + "..." : movieInfo.overview}
           </p>
           <p className='hidden lg:block text-white text-[14px]'>{movieInfo.overview}</p>
+          {limitExceeded && <p className='text-red'>The translation service is currently unavailable as the API limit has been exceeded.</p>}
           <button className='flex bg-white text-black justify-center items-center font-bold text-center py-1 px-2 sm:px-6 lg:py-2 gap-1 rounded-sm transition duration-300 hover:bg-opacity-60 lg:w-1/4'
             onClick={() => handleVideoPlayerEvent()}>
             <img width="30" height="30" src={PLAY_BUTTON_URL} alt="play--v1" />{lang[language].playButton}</button>

@@ -2,9 +2,6 @@ import React from 'react'
 import { IMG_LINK } from '../utils/constants'
 import { useDispatch } from 'react-redux'
 import { addMovieOverview, addPosterPathOverView } from '../utils/MoviesSlice';
-import ShimmerUI from './ShimmerUI';
-import { useState, useEffect } from 'react';
-
 
 const MoviesCard = ({ posterpath, overview, title, id }) => {
 
