@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MoviesCard from './MoviesCard'
 import { useRef } from 'react';
 import { LESS_THAN_URL, MORE_THAN_URL } from '../utils/constants';
+import ShimmerUI from './ShimmerUI';
 
 const MoviesList = ({ title, movie }) => {
   const scrollContainerRef = useRef(null);
+  // const [error,setError]=useState(true);
+  // useEffect(()=>{
+  //   setInterval(()=>{setError(false)},50000)
+  // },[movie])
 
   const scrollLeft = () => {
     scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
@@ -14,7 +19,7 @@ const MoviesList = ({ title, movie }) => {
     scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
   };
 
-  return (
+  return (!movie) ? <ShimmerUI/> : (
     <div className='pl-2 sm:pl-5'>
       <h1 className='text-white mb-3 font-bold'>{title}</h1>
       <div className='flex items-center relative'>

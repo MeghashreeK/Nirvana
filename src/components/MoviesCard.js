@@ -7,20 +7,15 @@ import { useState, useEffect } from 'react';
 
 
 const MoviesCard = ({ posterpath, overview, title, id }) => {
-  // const [loadData,setLoadData]=useState(true);
-
-  // useEffect(()=>{
-  //   setInterval(()=>{setLoadData(false)},4000)
-  // },[])
 
   const dispatch = useDispatch();
   const handleMovieCardEvent = () => {
     dispatch(addMovieOverview());
     dispatch(addPosterPathOverView({ posterPathData: posterpath, overviewData: overview, movieTitle:title, movieId:id }))
   }
-  return (posterpath===null) ? <ShimmerUI/> : (
+  return (
     <div className='w-36'>
-      { <img src={IMG_LINK + posterpath} onClick={handleMovieCardEvent} alt="movie-card" />}
+      { posterpath && <img src={IMG_LINK + posterpath} onClick={handleMovieCardEvent} alt="movie-card" />}
     </div>
   )
 

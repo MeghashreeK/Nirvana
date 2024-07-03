@@ -95,13 +95,13 @@ const Login = () => {
           </div>
           <div onClick={() => tocheckSignIn()}>
             {isSignIn && <div className='flex gap-1 justify-center' >
-              <p className='text-white'>Not registered yet?</p>
-              <p className='text-white hover:text-red-600 cursor-pointer'>Sign Up now!</p>
+              <p className='text-white text-center'>Not registered yet?</p>
+              <p className='text-white text-center hover:text-red-600 cursor-pointer'>Sign Up now!</p>
             </div>
             }
             {isSignIn === false && <div className='flex gap-1 justify-center' >
-              <p className='text-white'>Already registered?</p>
-              <p className='text-white hover:text-red-600 cursor-pointer'>Sign In now!</p>
+              <p className='text-white text-center'>Already registered?</p>
+              <p className='text-white text-center hover:text-red-600 cursor-pointer'>Sign In now!</p>
             </div>
             }
           </div>
