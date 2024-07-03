@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import lang from '../utils/languageConstants'
 import { useSelector } from 'react-redux'
 import { GoogleGenerativeAI } from '@google/generative-ai';
@@ -17,6 +17,19 @@ const GeminiSearch = () => {
   const [inputValue, setInputValue] = useState('');
   const [error,setError]=useState(false);
   const dispatch=useDispatch();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const geminiSearchMovies = async () => {
     try{
@@ -44,7 +57,7 @@ const GeminiSearch = () => {
     <div className='flex flex-col items-center bg-[#010B13] pt-[20%] sm:pt-[8%] gap-2 h-screen w-screen' onClick={handleHeaderListEvent}>
       <div className='flex w-full justify-center gap-1'>
         <input ref={input} className="h-5 p-5 w-1/2 rounded-lg focus:outline-none" value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)} placeholder={lang[language].gptSearchPlaceholder} />
+          onChange={(e) => setInputValue(e.target.value)} placeholder={isMobile ? lang[language].gptSearchPlaceholderMobileView : lang[language].gptSearchPlaceholder} />
         <button className='flex text-white h-5 bg-red-600 p-5 items-center focus:outline-none rounded-lg transition duration-500 hover:opacity-70' onClick={geminiSearchMovies }>
           {lang[language].search}</button>
       </div>

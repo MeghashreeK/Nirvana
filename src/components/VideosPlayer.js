@@ -17,9 +17,7 @@ const VideosPlayed = () => {
     }
   }, [id])
 
-  const handleHeaderListEvent = () => {
-    dispatch(toggleHeaderList(false));
-  }
+
 
   const getVideoData = async () => {
     const data = await fetch(`https://api.themoviedb.org/3/movie/${id.movieId}/videos`, API_OPTIONS_FOR_YOUTUBE);
@@ -38,7 +36,7 @@ const VideosPlayed = () => {
   }
 console.log(movieKey);
   return (
-    <div className='w-full h-screen' onClick={handleHeaderListEvent}>
+    <div className='w-full h-screen'>
       {movieKey && <iframe className='w-full h-screen' src={`https://www.youtube.com/embed/${movieKey}?autoplay=1&mute=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
     </div>
   )

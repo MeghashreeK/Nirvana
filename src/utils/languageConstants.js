@@ -2,6 +2,7 @@ const lang = {
     en: {
         search: "search",
         gptSearchPlaceholder: "what would you like to watch?",
+        gptSearchPlaceholderMobileView:"Search Movies",
         bgVideoTitle:"Elemental",
         bgVideoOverview:"In a city where fire, water, land, and air residents live together, a fiery young woman and a go-with-the-flow guy discover something elemental: how much they actually have in common.",
         playButton:"Play",
@@ -18,6 +19,7 @@ const lang = {
     hi: {
         search: "खोज",
         gptSearchPlaceholder: "आप क्या देखना चाहेंगे?",
+        gptSearchPlaceholderMobileView:"फ़िल्में खोजें",
         bgVideoTitle:"मौलिक",
         bgVideoOverview:"एक ऐसे शहर में जहां आग, पानी, जमीन और हवा के निवासी एक साथ रहते हैं, एक उग्र युवा महिला और प्रवाह के साथ चलने वाला लड़का कुछ मौलिक खोजता है: वास्तव में उनमें कितनी समानताएं हैं।",
         playButton:"प्ले",
@@ -36,6 +38,7 @@ const lang = {
     es: {
         search: "buscar",
         gptSearchPlaceholder: "¿Qué te gustaría ver?",
+        gptSearchPlaceholderMobileView:"Buscar películas",
         bgVideoTitle:"Elemental",
         bgVideoOverview:"En una ciudad donde conviven residentes del fuego, el agua, la tierra y el aire, una joven apasionada y un hombre que se deja llevar por la corriente descubren algo elemental: cuánto tienen realmente en común.",
         playButton:"Jugar",
