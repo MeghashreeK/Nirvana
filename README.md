@@ -4,10 +4,12 @@ I've created this web app using ReactJS, Tailwind CSS, and Redux. The frontend i
 
 => User Authentication: SignUp, SignIn, and SignOut functionality.
 
-=> Movie Data: Fetches movie data from TMDb.
-
 => Multilingual Support: Switch between English, Hindi, and Spanish.
 
+=> Movie Data: Fetches movie data from TMDb.
+
 => Search Functionality: Easily find movies you love.
-=> well designed
-=>Responsive Design : Fully responsive and user-friendly across all devices.
+
+=> Eye-Catching Design: Designed for a smooth and visually appealing user experience.
+
+=> Responsive Design : Fully responsive and user-friendly across all devices.
