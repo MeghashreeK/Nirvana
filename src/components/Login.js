@@ -76,17 +76,17 @@ const Login = () => {
           <p className='text-white font-bold text-3xl'>{isSignIn === false ? 'Sign Up' : 'Sign In'}</p>
           <div className='flex flex-col gap-5'>
             {isSignIn === false && <input ref={name}
-              className='p-3 rounded-sm bg-gray-800 bg-opacity-40 text-white w-full'
+              className='p-3 rounded-sm bg-gray-800 bg-opacity-60 text-white w-full'
               type='text'
               placeholder='Name' required
             />}
             <input ref={email}
-              className='p-3 rounded-sm bg-gray-800 bg-opacity-40 text-white w-full'
+              className='p-3 rounded-sm bg-gray-800 bg-opacity-60 text-white w-full'
               type='text'
               placeholder='Email'
             />
             <input ref={password}
-              className='p-3 rounded-sm bg-gray-800 bg-opacity-40 text-white w-full'
+              className='p-3 rounded-sm bg-gray-800 bg-opacity-60 text-white w-full'
               type='password'
               placeholder='Password'
             />

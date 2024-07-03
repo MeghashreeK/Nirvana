@@ -6,7 +6,6 @@ import { addMovieOverview } from '../utils/MoviesSlice';
 import lang from '../utils/languageConstants'
 import { toggleHeaderList } from '../utils/HeaderListSlice';
 import { toggleHomeValue, togglegptSearchValue, togglevideoPlayerValue } from '../utils/HeaderMenuSlice';
-import ShimmerUI from './ShimmerUI';
 
 
 
