@@ -23,7 +23,7 @@ const VideoTitle = () => {
     setRemoveOverview(true);
 
   }
-
+  
   return (
     <div className='pt-[25%] absolute text-white bg-gradient-to-r from-black w-screen aspect-video pl-5 z-0'>
       <div>

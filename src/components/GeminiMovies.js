@@ -14,7 +14,7 @@ const GeminiMovies = ({movie}) => {
     const geminiSuggestedMovies = async () => {
         const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`, API_OPTIONS);
         const json = await data.json();
-        console.log(json.results[0]);
+        // console.log(json.results[0]);
         setMovieData(json.results[0]);
       }
 

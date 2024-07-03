@@ -6,11 +6,6 @@ import ShimmerUI from './ShimmerUI';
 
 const MoviesList = ({ title, movie }) => {
   const scrollContainerRef = useRef(null);
-  // const [error,setError]=useState(true);
-  // useEffect(()=>{
-  //   setInterval(()=>{setError(false)},50000)
-  // },[movie])
-
   const scrollLeft = () => {
     scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
   };
