@@ -24,7 +24,7 @@ const Browser = () => {
   useTranslation();
 
   return (
-    <div>
+    <div >
       <Header />
 
       {(gptSearchPageVisibility) && <GeminiSearch />}
