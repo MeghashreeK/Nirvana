@@ -21,6 +21,9 @@ const SecondaryContainer = () => {
   const language = useSelector(store => store.language.languageSelected);
   const dispatch = useDispatch();
 
+
+ 
+
   useEffect(() => {
     if (movieOverviewState && movieDataRef.current) {
       movieDataRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -30,6 +33,7 @@ const SecondaryContainer = () => {
 
   const handleClick = () => {
     setShowMovieOverview(!showMovieOverview);
+
   };
 
   const handleCloseEvent = () => {
@@ -46,6 +50,7 @@ const SecondaryContainer = () => {
     dispatch(togglegptSearchValue(false));
   }
 
+  
 
   return  (
     <div className='flex flex-col bg-black pb-5 relative w-screen' onClick={() => {
@@ -62,9 +67,10 @@ const SecondaryContainer = () => {
         <img className="absolute top-2 right-2 cursor-pointer" width="24" height="24" onClick={handleCloseEvent} src={CROSS_BUTTON_URL} alt="multiply--v1" />
         <img className="opacity-100 w-1/2 h-full p-2" src={IMG_LINK + movieData.posterPathData} alt="movie-poster" />
         <div className='flex flex-col p-2 gap-2'>
-          <h1 className='text-white text-2xl lg:text-5xl font-bold'>{movieInfo.title}</h1>
+          <h1 className='text-white text-2xl lg:text-5xl font-bold'>
+                       {movieInfo?.title.length > 100 ? movieInfo?.title.substring(0, 50) + "..." : movieInfo?.title}</h1>
           <p className='text-white text-[14px] lg:hidden'>
-            {movieInfo.overview.length > 300 ? movieInfo.overview.substring(0, 300) + "..." : movieInfo.overview}
+            {movieInfo?.overview.length > 300 ? movieInfo?.overview.substring(0, 300) + "..." : movieInfo?.overview}
           </p>
           <p className='hidden lg:block text-white text-[14px]'>{movieInfo.overview}</p>
           {limitExceeded && <p className='text-red'>The translation service is currently unavailable as the API limit has been exceeded.</p>}

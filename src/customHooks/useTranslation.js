@@ -20,6 +20,7 @@ const useTranslation = () => {
 
         const title = movieData.movieTitle;
         const overview = movieData.overviewData;
+        // console.log({ title: title, overview: overview });
         const textToTranslate = title + "&r&z&$" + overview;
         const options = {
             method: 'POST',
@@ -34,16 +35,19 @@ const useTranslation = () => {
                 text: textToTranslate
             })
         };
-        try{
-        const data = await fetch(TRANSLATION_API, options);
-        const json = await data.json();
-        const translatedTextWithAmpersands = json.trans;
-        const translatedText = translatedTextWithAmpersands.split("&r&z&$");
-        const translatedTitle = translatedText[0];
-        const translatedOverview = translatedText[1];
-        dispatch(addTranslatedSentence({ title: translatedTitle, overview: translatedOverview }));
+        try {
+            const data = await fetch(TRANSLATION_API, options);
+            const json = await data.json();
+            const translatedTextWithAmpersands = json.trans;
+            const translatedText = translatedTextWithAmpersands.split("&r&z&$");
+            console.log(translatedText)
+            const translatedTitle = translatedText[0];
+            const translatedOverview = translatedText[1] || "";
+            dispatch(addTranslatedSentence({ title: translatedTitle, overview: translatedOverview }));
+                    console.log({ title: translatedTitle, overview: translatedOverview });
+
         }
-        catch{
+        catch {
             dispatch(addTranslatedSentence({ title: title, overview: overview }))
             dispatch(limitExceededFunction(true));
         }
